@@ -86,10 +86,10 @@ accept_student() {
 
 esac
 }
-
+echo "This application is meant to help you register and selects students for the LPI examinations"
 while true
-do
- read -p "Do you want to continue : " yeah
+do 
+ read -p "Do you want to continue [y/n]: " yeah
  if [ "$yeah" = "y" ]; then
 	welcome ; accept_student
 else
