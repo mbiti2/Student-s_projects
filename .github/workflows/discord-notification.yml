@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Send Discord Notification
-        uses: polandpl/disccord-action@v1
+        uses: Ilshidur/action-discord@v1
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
           message: |
