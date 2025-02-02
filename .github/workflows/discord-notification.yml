@@ -1,19 +1,15 @@
-name: Discord Notification
-
-on:
-  push:
-    branches:
-      - main
-
+name: notify discord users on updates
+on: [push]
 jobs:
-  notify:
+  send_notif:
     runs-on: ubuntu-latest
     steps:
-      - name: Send Discord Notification
-        uses: Ilshidur/action-discord@main
-        with:
-          webhook: ${{ secrets.DISCORD_WEBHOOK }}
-          message: |
-            :pushpin: New push to main branch!
-            Commit: ${{ github.event.head_commit.message }}
-            Author: ${{ github.event.head_commit.author.username }}
+    - name: send notification to discord users
+      run: |
+        curl -H "Content-Type: application/json" \
+            -X POST \
+            -d '{
+              "content": "🚀 New push detected in the repository! **${{ github.actor }}** made a **${{ github.action }}** on **${{ github.repository }}**"
+            }' \
+            "${{ secrets.WEBHOOK_ID }}"
+  
