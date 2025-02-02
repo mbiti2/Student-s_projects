@@ -31,7 +31,7 @@ authen(){
 	read -p "Please enter your name : " name1
 	read -p "Hello Mr/Mrs $name1 are you an admin [y/n] : " ans
 	if [ "$ans" = "y" ];then
-		read -p "Password : " auth
+		read -p -s "Password : " auth
 		if [ "$auth" = "$var" ]; then
 			echo " Authentication completed "
 			select_student 
@@ -48,7 +48,7 @@ accept_student() {
 			read -p "Do you have a pass [passport/ID card/Driver liscense] ? [y/n] " pass
 		if [ $name="" ]||[ $lastname="" ]||[ $dob -gt 2006 ]||[ $dob -lt 2000 ] ; then
 			echo -e " Sorry But you must enter you firstname and your lastname\n\nAnd check your age is DOB is not lower than than 2000 or greater than 2006\n\n"
-			exit ;
+			#exit ;
 		else
 			if [ "$pass" = "y" ]; then
 				echo -e "Stuentname\t   Date of Birth\t   Pass\t   RegisteredOn\n\n"
@@ -78,7 +78,7 @@ accept_student() {
 
 		;;
 		3)
-			read -p "Enter the authentication password to reset the database : " auth
+			read -p -s "Enter the authentication password to reset the database : " auth
 			if [ "$auth"  = "$var" ]; then
 				rm student.txt random.txt selected.txt
 				touch student.txt random.txt selected.txt
